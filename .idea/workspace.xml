@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0a0638b-92e5-4839-8020-87f9361ebb45" name="变更" comment="huangshaochen">
-      <change beforePath="$PROJECT_DIR$/开发阶段/文档/质量保证计划书.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/质量保证计划书.md" afterDir="false" />
-    </list>
+    <list default="true" id="a0a0638b-92e5-4839-8020-87f9361ebb45" name="变更" comment="huangshaochen" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -203,28 +201,7 @@
       <option name="project" value="LOCAL" />
       <updated>1663650255596</updated>
     </task>
-    <task id="LOCAL-00023" summary="huangshaochen">
-      <created>1663650423906</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1663650423906</updated>
-    </task>
-    <task id="LOCAL-00024" summary="huangshaochen">
-      <created>1663650566182</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1663650566182</updated>
-    </task>
-    <task id="LOCAL-00025" summary="huangshaochen">
-      <created>1663650633887</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1663650633887</updated>
-    </task>
-    <option name="localTasksCounter" value="26" />
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
