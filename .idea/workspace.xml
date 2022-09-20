@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0a0638b-92e5-4839-8020-87f9361ebb45" name="变更" comment="huangshaochen" />
+    <list default="true" id="a0a0638b-92e5-4839-8020-87f9361ebb45" name="变更" comment="Han Wenbai">
+      <change beforePath="$PROJECT_DIR$/开发阶段/文档/软件过程定义.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/软件过程定义.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +43,11 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\软件项目综合实践\Shop\开发阶段\图片\软件过程定义" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -209,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663650255596</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Han Wenbai">
+      <created>1663652323719</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1663652323719</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +244,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="wangyutong" />
     <MESSAGE value="huangshaochen" />
-    <option name="LAST_COMMIT_MESSAGE" value="huangshaochen" />
+    <MESSAGE value="Han Wenbai" />
+    <option name="LAST_COMMIT_MESSAGE" value="Han Wenbai" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
