@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0a0638b-92e5-4839-8020-87f9361ebb45" name="变更" comment="Han Wenbai">
-      <change beforePath="$PROJECT_DIR$/开发阶段/文档/软件过程定义.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/软件过程定义.md" afterDir="false" />
+    <list default="true" id="79b358bf-f526-475f-aef0-c3079620e100" name="Default Changelist" comment="ypz">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_9_20_12_49____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2022_9_20_12_49____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,6 +230,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
