@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79b358bf-f526-475f-aef0-c3079620e100" name="Default Changelist" comment="ypz">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_9_20_12_49____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2022_9_20_12_49____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" afterDir="false" />
     </list>
@@ -225,7 +224,28 @@
       <option name="project" value="LOCAL" />
       <updated>1663651801291</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="ypz">
+      <created>1663656125959</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1663656125959</updated>
+    </task>
+    <task id="LOCAL-00025" summary="ypz">
+      <created>1663656179753</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1663656179753</updated>
+    </task>
+    <task id="LOCAL-00026" summary="ypz">
+      <created>1663656308444</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1663656308444</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +276,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="wangyutong" />
     <MESSAGE value="huangshaochen" />
-    <option name="LAST_COMMIT_MESSAGE" value="huangshaochen" />
+    <MESSAGE value="ypz" />
+    <option name="LAST_COMMIT_MESSAGE" value="ypz" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
