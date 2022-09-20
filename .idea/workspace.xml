@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="79b358bf-f526-475f-aef0-c3079620e100" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/开发阶段/assets/img/软件过程定义1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/开发阶段/文档/软件过程定义.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/软件过程定义.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Shop" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -19,16 +21,16 @@
   <component name="ProjectId" id="2F0umYTlYUy0Xv4NlA2yjbafUti" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/开发阶段/assets/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="ServiceViewManager">
@@ -93,9 +95,6 @@
     <option name="localTasksCounter" value="6" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -110,23 +109,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <option name="LAST_COMMIT_MESSAGE" value="test" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1663644086462">
-      <screen x="0" y="0" width="1549" height="831" />
-    </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1549.831@0.0.1549.831" timestamp="1663644086462" />
-    <state x="505" y="114" key="FileChooserDialogImpl" timestamp="1663643128528">
-      <screen x="0" y="0" width="1549" height="831" />
-    </state>
-    <state x="505" y="114" key="FileChooserDialogImpl/0.0.1549.831@0.0.1549.831" timestamp="1663643128528" />
-    <state x="267" y="84" key="Vcs.Push.Dialog.v2" timestamp="1663644030043">
-      <screen x="0" y="0" width="1549" height="831" />
-    </state>
-    <state x="267" y="84" key="Vcs.Push.Dialog.v2/0.0.1549.831@0.0.1549.831" timestamp="1663644030043" />
-    <state x="541" y="314" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1663644111125">
-      <screen x="0" y="0" width="1549" height="831" />
-    </state>
-    <state x="541" y="314" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1549.831@0.0.1549.831" timestamp="1663644111125" />
   </component>
 </project>
