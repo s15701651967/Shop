@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="79b358bf-f526-475f-aef0-c3079620e100" name="Default Changelist" comment="ypz">
+    <list default="true" id="a0a0638b-92e5-4839-8020-87f9361ebb45" name="变更" comment="huangshaochen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/项目开发计划书.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/开发阶段/文档/质量保证计划书.md" beforeDir="false" afterPath="$PROJECT_DIR$/开发阶段/文档/质量保证计划书.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +28,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="Settings.Markdown" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -39,6 +48,7 @@
       <workItem from="1663072631794" duration="3273000" />
       <workItem from="1663634464179" duration="6079000" />
       <workItem from="1663644469257" duration="245000" />
+      <workItem from="1663644803437" duration="1661000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1663073367162</created>
@@ -131,7 +141,56 @@
       <option name="project" value="LOCAL" />
       <updated>1663644010560</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="huangshaochen">
+      <created>1663644996571</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1663644996571</updated>
+    </task>
+    <task id="LOCAL-00015" summary="huangshaochen">
+      <created>1663645566187</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1663645566187</updated>
+    </task>
+    <task id="LOCAL-00016" summary="huangshaochen">
+      <created>1663645828408</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1663645828408</updated>
+    </task>
+    <task id="LOCAL-00017" summary="huangshaochen">
+      <created>1663645899441</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1663645899441</updated>
+    </task>
+    <task id="LOCAL-00018" summary="huangshaochen">
+      <created>1663646103595</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1663646103595</updated>
+    </task>
+    <task id="LOCAL-00019" summary="huangshaochen">
+      <created>1663646147317</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1663646147317</updated>
+    </task>
+    <task id="LOCAL-00020" summary="huangshaochen">
+      <created>1663646322087</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1663646322087</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +210,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
     <MESSAGE value="wangyutong" />
-    <option name="LAST_COMMIT_MESSAGE" value="wangyutong" />
+    <MESSAGE value="huangshaochen" />
+    <option name="LAST_COMMIT_MESSAGE" value="huangshaochen" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
