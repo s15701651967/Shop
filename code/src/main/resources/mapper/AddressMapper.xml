@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--进行持久层接口mapper层中的UserMapper中的两个抽象方法的映射配置-->
+<!-- 项目中第一次使用SQL映射，所以需要在application.properties中添加mybatis.mapper.locations属性的配置，以指定XML文件的位置-->
+
+        <!-- namespace属性：用于制定当前的映射文件和哪个接口进行映射，要指定接口的文件路径，要标注包的完整路径接口-->
+<mapper namespace="com.bistu.store.mapper.AddressMapper">
+    <!--自定义映射规则：resultMap标签来完成映射规则的定义-->
+    <!--
+    id属性：标签给该映射规则分配一个唯一的id值，对应的为resultMap="id属性的值"属性的取值
+    type属性：取值为一个类，表示数据库中的查询结果与java中的哪个实体类进行结果集的映射
+    -->
+    <resultMap id="AddressEntityMap" type="com.bistu.store.entity.Address">
+        <id column="aid" property="aid"/>
+        <result column="province_code" property="provinceCode"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="city_name" property="cityName"/>
+        <result column="area_code" property="areaCode"/>
+        <result column="area_name" property="areaName"/>
+        <result column="is_default" property="isDefault"/>
+        <result column="created_user" property="createdUser"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+    </resultMap>
+
+    <!--id属性：表示映射接口中的方法的名称，直接在标签的内容部来编写SQL语句-->
+    <!--
+    useGeneratedKeys属性:表示开启某个字段的值递增（主键设置为递增）
+    keyProperty：标签将表中的哪个字段作为主键进行递增
+    -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="aid">
+        <!--  插入收货地址数据：Integer insert(Address address)  -->
+         INSERT INTO t_address ( uid, name, province_name, province_code,
+         city_name, city_code, area_name, area_code, zip, address, phone,
+         tel,tag, is_default, created_user, created_time, modified_user, modified_time )
+         VALUES ( #{uid}, #{name}, #{provinceName}, #{provinceCode}, #{cityName},
+          #{cityCode}, #{areaName}, #{areaCode}, #{zip}, #{address}, #{phone}, #{tel},
+          #{tag}, #{isDefault}, #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime} )
+    </insert>
+
+    <!--  统计某用户的收货地址数据的数量：Integer countByUid(Integer uid)  -->
+    <select id="countByUid" resultType="java.lang.Integer">
+        SELECT count(*) from t_address WHERE uid=#{uid}
+    </select>
+
+    <!--  查询某用户的收货地址列表数据：List<Address> findByUid(Integer uid)  -->
+    <select id="findByUid" resultMap="AddressEntityMap">
+        SELECT * FROM t_address WHERE uid=#{uid}
+        ORDER BY is_default DESC,created_time DESC
+    </select>
+
+    <!--  将某用户的所有收货地址设置为非默认地址：Integer updateNonDefaultByUid(Integer uid)  -->
+    <update id="updateNonDefault">
+        UPDATE t_address
+        SET is_default=0
+        WHERE uid=#{uid}
+    </update>
+
+    <!--  将指定的收货地址设置为默认地址： Integer updateDefaultByAid @Param("aid") Integer aid, @Param("modifiedUser") String modifiedUser,@Param("modifiedTime") Date modifiedTime)  -->
+    <update id="updateDefaultByAid">
+         UPDATE t_address
+        SET is_default=1,
+        modified_user=#{modifiedUser},
+        modified_time=#{modifiedTime}
+        WHERE aid=#{aid}
+    </update>
+
+    <!--  根据收货地址aid值，查询收货地址详情：Address findByAid(Integer aid)  -->
+    <select id="findByAid" resultMap="AddressEntityMap">
+        SELECT * FROM t_address WHERE aid=#{aid}
+    </select>
+
+    <!--  根据收货地址id删除数据：Integer deleteByAid(Integer aid)  -->
+    <delete id="deleteByAid">
+        DELETE FROM t_address WHERE aid=#{aid}
+    </delete>
+    <!--  查询某用户最后修改的收货地址：Address findLastModified(Integer uid)  # 查询1条数据，索引从0到1，第1条记录
+-->
+    <select id="findLastModified" resultMap="AddressEntityMap">
+        SELECT * FROM t_address WHERE uid=#{uid} ORDER BY modified_time DESC LIMIT 0,1
+    </select>
+
+    <!-- 修改用户地址数据 Integer updateInfoByUid(Address address);-->
+    <update id="updateInfoByAid">
+        UPDATE t_address
+        SET
+        <if test="tag!=null">
+            tag=#{tag},
+        </if>
+        <if test="name!=null">
+            name=#{name},
+        </if>
+        <if test="address!=null">
+            address=#{address},
+        </if>
+        <if test="phone!=null">
+            phone=#{phone},
+        </if>
+        modified_user=#{modifiedUser},
+        modified_time=#{modifiedTime}
+        WHERE aid=#{aid}
+    </update>
+</mapper>

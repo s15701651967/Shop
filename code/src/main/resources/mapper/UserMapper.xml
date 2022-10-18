@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--进行持久层接口mapper层中的UserMapper中的两个抽象方法的映射配置-->
+<!-- 项目中第一次使用SQL映射，所以需要在application.properties中添加mybatis.mapper.locations属性的配置，以指定XML文件的位置-->
+
+        <!-- namespace属性：用于制定当前的映射文件和哪个接口进行映射，要指定接口的文件路径，要标注包的完整路径接口-->
+<mapper namespace="com.bistu.store.mapper.UserMapper">
+    <!--自定义映射规则：resultMap标签来完成映射规则的定义-->
+    <!--
+    id属性：标签给该映射规则分配一个唯一的id值，对应的为resultMap="id属性的值"属性的取值
+    type属性：取值为一个类，表示数据库中的查询结果与java中的哪个实体类进行结果集的映射
+    -->
+    <resultMap id="UserEntityMap" type="com.bistu.store.entity.User">
+    <!--将表资源与类的属性不一致字段进行匹配指定，名称一致字段可省略不写-->
+        <!-- 配合完成名称不一致的映射
+        column与数据库表当中一致表示表中资源名称，property与属性当中名字一致表示类中属性名称
+        -->
+        <!--在定义映射规则时主键不可省略-->
+        <id column="uid" property="uid"/>
+        <result column="is_delete" property="isDelete"></result>
+        <result column="is_pass" property="isPass"></result>
+        <result column="level" property="level"></result>
+        <result column="created_user" property="createdUser"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+    </resultMap>
+
+    <resultMap id="UserPriorityEntityMap" type="com.bistu.store.vo.PriorityVO">
+        <!--将表资源与类的属性不一致字段进行匹配指定，名称一致字段可省略不写-->
+        <!-- 配合完成名称不一致的映射
+        column与数据库表当中一致表示表中资源名称，property与属性当中名字一致表示类中属性名称
+        -->
+        <!--在定义映射规则时主键不可省略-->
+        <id column="uid" property="uid"/>
+        <result column="userType" property="userType"></result>
+        <result column="created_user" property="createdUser"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+    </resultMap>
+
+    <!--id属性：表示映射接口中的方法的名称，直接在标签的内容部来编写SQL语句-->
+    <!--
+    useGeneratedKeys属性:表示开启某个字段的值递增（主键设置为递增）
+    keyProperty：标签将表中的哪个字段作为主键进行递增
+    -->
+    <!-- 插入用户数据：Integer insert(User user) -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
+        INSERT INTO
+            t_user (username, password, salt, phone, email, gender, avatar, is_delete, created_user, created_time, modified_user, modified_time,city,bankAccount,userType)
+        VALUES
+            (#{username}, #{password}, #{salt}, #{phone}, #{email}, #{gender}, #{avatar}, #{isDelete}, #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime},#{city},#{bankAccount},#{userType})
+    </insert>
+
+    <!--select语句在执行时查询结果为一个对象多个对象-->
+    <!--
+    resultType属性：表示查询结果集类型，只需要指定对应映射类的类型，且包含完整包接口
+    resultMap：表示当表的资源与类的对象属性的字段名不一致时，来自定义查询结果集的映射规则
+    -->
+    <select id="findByUsername" resultMap="UserEntityMap">
+        SELECT * FROM  t_user WHERE username = #{username}
+    </select>
+
+    <update id="updatePasswordByYid">
+        UPDATE t_user SET
+            password=#{password},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        where uid=#{uid}
+    </update>
+
+    <select id="findByUid" resultMap="UserEntityMap">
+        SELECT * FROM  t_user WHERE uid = #{uid}
+    </select>
+
+    <update id="updateInfoByUid">
+        UPDATE t_user
+        SET
+        <!--if表示条件判断标签 test属性接收的为一个返回值为boolean类型的条件
+        ，若test结果条件为真，则执行if标签内部语句，反之不执行-->
+            <if test="phone!=null">
+                phone=#{phone},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+            <if test="gender!=null">
+                gender=#{gender},
+            </if>
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE uid=#{uid}
+    </update>
+
+    <update id="updateAvatarByUid">
+        UPDATE t_user
+        SET
+            avatar=#{avatar},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <select id="checkAllUsers" resultMap="UserEntityMap">
+        SELECT uid,username,password,salt,phone,email,gender,avatar,is_delete,city,bankAccount,userType,is_pass FROM t_user
+    </select>
+
+    <update id="passByAdmin">
+        UPDATE t_user
+        SET
+            is_pass=#{isPass},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <update id="rejectByAdmin">
+        UPDATE t_user
+        SET
+            is_pass=#{isPass},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <update id="addMoney">
+        UPDATE t_user
+        SET
+            purse=purse+ #{purse},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <update id="subMoney">
+        UPDATE t_user
+        SET
+            purse=purse-#{purse},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <select id="getMoney" resultMap="UserEntityMap">
+        SELECT uid,purse
+        FROM t_user
+        WHERE uid=#{uid}
+    </select>
+
+
+    <select id="getLevel" resultMap="UserEntityMap">
+        SELECT uid,username,userType,level
+        FROM t_user
+        WHERE userType=2
+    </select>
+
+    <select id="getLevelByBid" resultMap="UserPriorityEntityMap">
+        SELECT t_user.uid,t_user.username,t_user.userType,t_user.level,SUM(t_product.priority) AS priorities
+        FROM t_user
+                LEFT JOIN t_product ON t_user.uid=t_product.business_id
+        WHERE userType=2 AND uid=#{uid}
+    </select>
+
+    <select id="getBidLevel" resultMap="UserEntityMap">
+        SELECT uid,username,userType,level
+        FROM t_user
+        WHERE userType=2 AND uid=#{uid}
+    </select>
+
+    <update id="addLevel" >
+        UPDATE t_user
+        SET
+            level=level+1,
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <update id="subLevel" >
+        UPDATE t_user
+        SET
+            level=level-1,
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <update id="addPoint">
+        UPDATE t_user
+        SET
+            point=point+ #{point},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <update id="subPoint">
+        UPDATE t_user
+        SET
+            point=point-#{point},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE
+            uid=#{uid}
+    </update>
+
+    <select id="getPoint" resultMap="UserEntityMap">
+        SELECT uid,username,point
+        FROM t_user
+        WHERE uid=#{uid}
+    </select>
+</mapper>
