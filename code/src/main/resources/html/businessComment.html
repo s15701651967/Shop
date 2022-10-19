@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--edge浏览器H5兼容设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--360浏览器H5兼容设置-->
+    <meta name="renderer" content="webkit"/>
+    <title>电脑商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--导入核心文件-->
+    <script src="../bootstrap3/js/holder.js"></script>
+    <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="../bootstrap3/jquery-1.8.3.min.js"></script>
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 字体图标 -->
+    <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webindex.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/top.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <p class="panel-title">商家回复评价 若回复内容不显示请多次点击评价按钮</p>
+            </div>
+            <div>
+				<table class="cart-table" width="100%">
+					<thead>
+
+					<th width="90%"><input id="newReply"type="text" class="form-control"
+										   placeholder="请输入对买家的评价,先点击确定内容再点击评价"></th>
+					<th width="10%"><input id="btn-sure-user" type="button" class="form-control"
+										   value="确定内容"/></th>
+					</thead>
+				</table>
+
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <!--购物车表格开始-->
+                    <table class="cart-table" width="100%">
+                        <thead>
+                        <tr>
+                            <th width="5%">用户id</th>
+                            <th width="5%">商家id</th>
+                            <th width="5%">订单id</th>
+                            <th width="10%">商品id</th>
+                            <th width="10%">商品评价</th>
+                            <th width="10%">商家评价</th>
+                            <th width="10%">评价分数</th>
+                            <th width="10%">商家回复</th>
+<!--                            <th width="25%">回复</th>-->
+                            <th width="5%">操作</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody id="user-list" class="cart-body">
+                        <tr>
+                            <td>50</td>
+                            <td>50</td>
+                            <td>50</td>
+                            <td>10000005</td>
+                            <td>不错不错不错不错不错不错</td>
+                            <td>不错不错不错不错不错不错</td>
+                            <td>10</td>
+                            <td>谢谢谢谢谢谢谢谢</td>
+<!--                            <td><input id="showReply" name="reply" type="text" class="form-control"-->
+<!--                                       placeholder="请输入对买家的评价">-->
+<!--                            </td>-->
+                            <td><input id="btn-pass-user" type="button" class="cart-del btn btn-default btn-xs"
+                                       value="评价"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="total-bar">
+                    </div>
+                    <label class="col-md-2 control-label"><a href="index_business.html">返回</a>&nbsp;&nbsp;&nbsp;</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	var newRe;
+
+    $(document).ready(function () {
+        showUserList();
+    });
+    console.log(localStorage.getItem("uid"));
+
+   $("#btn-sure-user").click(function getReply() {
+	   newRe=$("#newReply").val();
+	   localStorage.removeItem("reply");
+	   localStorage.setItem("reply","'"+newRe+"'");
+
+       if (location.href.indexOf("#reloaded") == -1) {
+           location.href = location.href + "#reloaded";
+           location.reload();
+       }
+	   console.log("评论"+newRe);
+   })
+
+    function showUserList() {
+        $("#user-list").empty();
+        let u = localStorage.getItem("uid");
+        $.ajax({
+            url: "/comment/find_reply",
+            type: "GET",
+            data: "bid=" + u,
+            dataType: "JSON",
+            success: function (json) {
+                let list = json.data;
+                console.log("count=" + list.length);
+                console.log(json.data);
+                for (let i = 0; i < list.length; i++) {
+                    let tr = '<tr>' +
+                        '<td>#{uid}</td>' +
+                        '<td>#{bid}</td>' +
+                        '<td>#{oid}</td>' +
+                        '<td>#{pid}</td>' +
+                        '<td>#{pComment}</td>' +
+                        '<td>#{bComment}</td>' +
+                        '<td>#{judgeMark}</td>' +
+                        '<td>#{reply}</td>' +
+                        '<td>' +
+						'<input id="comment-reply" onclick="replyComment(#{uid},#{bid},#{oid},#{pid},#{newRepl})" type="button" value="评价" class="cart-del btn btn-default btn-xs" >' +
+						'</td>' +
+                        '</tr>'
+
+							// <input name="newReply" onclick="replyComment(#{uid},#{bid},#{oid},#{pid},#{newRepl})" type="button" value="评价"/>
+
+                    tr = tr.replace(/#{uid}/g, list[i].uid);
+                    tr = tr.replace(/#{bid}/g, list[i].bid);
+                    tr = tr.replace(/#{oid}/g, list[i].oid);
+                    tr = tr.replace(/#{pid}/g, list[i].pid);
+                    tr = tr.replace(/#{pComment}/g, list[i].pcomment);
+                    tr = tr.replace(/#{bComment}/g, list[i].bcomment);
+                    tr = tr.replace(/#{judgeMark}/g, list[i].judgeMark);
+                    tr = tr.replace(/#{reply}/g, list[i].reply);
+
+                    newRe=localStorage.getItem("reply");
+					tr = tr.replace(/#{newRepl}/g,newRe );
+
+					console.log("回复记录数据"+list[i].uid+list[i].bid+list[i].oid+list[i].pid+newRe);
+
+					$("#user-list").append(tr);
+                }
+            }
+        });
+    }
+
+    function replyComment(uid, bid, oid, pid, reply) {
+		console.log("回复记录数据"+uid+bid+oid+pid+reply);
+		showUserList();
+        $.ajax({
+            url: "/comment/updateByBid",
+            type: "POST",
+            data: "uid=" + uid + "&bid=" + bid + "&oid=" + oid + "&pid=" + pid + "&reply=" + reply,
+            dataType: "JSON",
+            success: function (json) {
+            	console.log("回复记录数据"+uid+bid+oid+pid+reply);
+                if (json.state == 200) {
+                    alert("感谢反馈");
+                    showUserList();
+                } else {
+                    alert("评价有误");
+                }
+            },
+            error: function (xhr) {
+                alert("评价时产生未知的异常" + xhr.message);//自动产生错误描述信息
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
