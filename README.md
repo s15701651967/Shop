@@ -28,6 +28,19 @@
 3.管理员身份登录：管理员审核用户注册信息，管理员审核商品信息，管理员修改用户密码等功能。  
 
 ###目录介绍：
+**code:**
+后端代码
+>https://github.com/s15701651967/Shop/tree/master/code/src/main/java/store
+>
+
+前端代码  
+>https://github.com/s15701651967/Shop/tree/master/code/src/main/resources/html
+>
+
+测试代码
+>https://github.com/s15701651967/Shop/tree/master/code/src/test/java/com/bistu/store
+>
+
 **week_1:**  
 1.任务书
 >https://github.com/s15701651967/Shop/blob/master/week_1/%E4%BB%BB%E5%8A%A1%E4%B9%A6.md
