@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <!--edge浏览器H5兼容设置-->
@@ -12,14 +11,15 @@
   <!--导入核心文件-->
   <script src="../bootstrap3/js/holder.js"></script>
   <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
-  <script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+  <script src="../bootstrap3/jquery-1.8.3.min.js"></script>
   <script src="../bootstrap3/js/bootstrap.js"></script>
+  <script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
   <!-- 字体图标 -->
   <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="../css/layout.css" />
-  <link rel="stylesheet" type="text/css" href="../css/top.css" />
+  <link rel="stylesheet" type="text/css" href="../css/webindex.css" />
   <link rel="stylesheet" type="text/css" href="../css/footer.css" />
-  <script src="../js/adddel.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" type="text/css" href="../css/top.css" />
 </head>
 
 <body>
@@ -35,10 +35,20 @@
     <!--快捷选项-->
     <div class="col-md-9 top-item">
       <ul class="list-inline pull-right">
-        <li><a href="orders_user.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
+        <li>欢迎您</a></li>
+        <li>商家</a></li>
         <li class="li-split">|</li>
-        <li><a href="cart_user.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
+        <li><a href="topup_business.html">&nbsp;商家钱包</a></li>
         <li class="li-split">|</li>
+        <li><a href="index_business_manage.html">&nbsp;管理商品</a></li>
+        <li class="li-split">|</li>
+        <li><a href="businessComment.html"><span class="fa fa-file-text"></span>回复记录</a></li>
+        <li class="li-split">|</li>
+        <li><a href="insertProduct.html">&nbsp;添加商品</a></li>
+        <li class="li-split">|</li>
+        <li><a href="orders_business.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
+        <li class="li-split">|</li>
+
         <li>
           <!--下列列表按钮 ：管理-->
           <div class="btn-group">
@@ -68,214 +78,305 @@
         <a href="#"></a>
       </li>
       <li class="active"><a href="index_business.html"><span class="fa fa-home"></span></a></li>
+      <li><a href="index_business_products.html">商品橱窗</a></li>
+      <li><a href="index_business_products1.html">商品橱窗(审核通过)</a></li>
+      <form id="form-search" action="search_business.html" class="form-inline pull-right" role="form">
+        <div class="form-group">
+          <input type="text" class="form-control" id="search" name="title" placeholder="请输入商品名称进行搜索">
+        </div>
+        <input id="btn-search" type="submit" class="btn btn-primary" value="搜索" />
+      </form>
     </ul>
-  </div>
-  <div class="col-md-6">
-    <form id="form-search" action="search_business.html" class="form-inline pull-right" role="form">
-      <div class="form-group">
-        <input type="text" class="form-control" id="search" name="title" placeholder="请输入商品名称进行搜索">
-      </div>
-      <input id="btn-search" type="submit" class="btn btn-primary" value="搜索" />
-    </form>
-
   </div>
 </div>
 <!--头部结束-->
 <!--导航结束-->
 <div class="container">
-  <div class="col-md-2">
-    <!--左侧导航开始-->
-    <div class="panel-group" id="accordion">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <!--主选项：我的订单-->
-          <p class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">我的订单</a>
-          </p>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse">
-          <div class="panel-body">
-            <div><a href="orders_user.html">全部订单</a></div>
+  <div class="row">
+    <div class="col-md-10">
+      <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+          <li data-target="#myCarousel" data-slide-to="4"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner" align="center">
+          <div class="item active">
+            <img src="../images/index/index_banner1.png">
+          </div>
+          <div class="item">
+            <img src="../images/index/index_banner2.png">
+          </div>
+          <div class="item">
+            <img src="../images/index/index_banner3.png">
+          </div>
+          <div class="item">
+            <img src="../images/index/index_banner4.png">
+          </div>
+          <div class="item">
+            <img src="../images/index/index_banner5.png">
           </div>
         </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
+    </div>
+  </div>
+
+  <!--推荐栏目-->
+  <div class="row">
+
+
+    <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <!--主选项：资料修改-->
-          <p class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">资料修改</a>
-          </p>
+          <p class="panel-title">热销排行</p>
         </div>
-        <div id="collapseTwo" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <div><a href="password_business.html">修改密码</a></div>
-            <div><a href="userdata_business.html">个人资料</a></div>
-            <div><a href="upload_business.html">上传营业执照</a></div>
-            <div><a href="address_business.html"><b>收货管理</b></a></div>
+        <div id="hot-list" class="panel-body panel-item">
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)10本装40张A5牛皮纸记事本子日记本办公软抄本GBR0731</a></div>
+            <div class="col-md-2">¥23</div>
+            <div class="col-md-3"><img src="../images/portal/00GuangBo1040A5GBR0731/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">齐心（COMIX）C5902 A5优品商务笔记本子记事本日记本122张</a></div>
+            <div class="col-md-2">¥18</div>
+            <div class="col-md-3"><img src="../images/portal/02COMIXC5902A5122blue/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)皮面日程本子 计划记事本效率手册米色FB60322</a></div>
+            <div class="col-md-2">¥28</div>
+            <div class="col-md-3"><img src="../images/portal/001GuangBo)FB60322/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">戴尔Dell 燃700R1605银色</a></div>
+            <div class="col-md-2">¥3799</div>
+            <div class="col-md-3"><img src="../images/portal/11DELLran7000R1605Ssilvery/collect.png" class="img-responsive" /></div>
           </div>
         </div>
       </div>
     </div>
-    <!--左侧导航结束-->
-  </div>
-  <div class="col-md-10">
-    <div class="panel panel-default">
-      <ul class="nav nav-tabs">
-        <li><a href="password_business.html">修改密码</a></li>
-        <li><a href="userdata_business.html">个人资料</a></li>
-        <li><a href="upload_business.html">上传营业执照</a></li>
-        <li class="active"><a href="#">收货管理</a></li>
-      </ul>
-      <div class="panel-body">
-        <form action="addressdata.html" role="form">
-
-          <table class="table table-striped">
-            <caption>收货地址列表</caption>
-            <thead>
-            <tr>
-              <th>地址类型</th>
-              <th>收货人姓名</th>
-              <th>详细地址</th>
-              <th>联系电话</th>
-              <th colspan="3">操作</th>
-            </tr>
-            </thead>
-            <tbody id="address-list">
-            <tr>
-              <td>家</td>
-              <td>123</td>
-              <td>北京市房山区</td>
-              <td>12341231234</td>
-              <td><a class="btn btn-xs btn-info"><span class="fa fa-edit"></span> 修改</a></td>
-              <td><a class="btn btn-xs add-del btn-info"><span class="fa fa-trash-o"></span> 删除</a></td>
-              <td><a class="btn btn-xs add-def btn-default">设为默认</a></td>
-            </tr>
-            <tr>
-              <td>公司</td>
-              <td>12</td>
-              <td>北京市海淀区2</td>
-              <td>1111***1234</td>
-              <td><a class="btn btn-xs btn-info"><span class="fa fa-edit"></span> 修改</a></td>
-              <td><a class="btn btn-xs add-del btn-info"><span class="fa fa-trash-o"></span> 删除</a></td>
-              <td><a class="btn btn-xs add-def btn-default">设为默认</a></td>
-            </tr>
-            <tr>
-              <td>宿舍</td>
-              <td>1</td>
-              <td>北京市海淀区1</td>
-              <td>1111***1234</td>
-              <td><span class="fa fa-edit" ><input type="submit" value="修改"/></span></td>
-
-              <td><a class="btn btn-xs add-del btn-info"><span class="fa fa-trash-o"></span> 删除</a></td>
-              <td><a class="btn btn-xs add-def btn-default">设为默认</a></td>
-            </tr>
-            </tbody>
-          </table>
-
-        </form>
-        <!--地址显示-->
-
-        <a href="addAddress.html" class="btn btn-sm btn-primary"><span class="fa fa-plus"></span>新增收货地址</a>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="panel-title">好评度</p>
+        </div>
+        <div id="mark-list" class="panel-body panel-item">
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)10本装40张A5牛皮纸记事本子日记本办公软抄本GBR0731</a></div>
+            <div class="col-md-2">¥23</div>
+            <div class="col-md-3"><img src="../images/portal/00GuangBo1040A5GBR0731/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">齐心（COMIX）C5902 A5优品商务笔记本子记事本日记本122张</a></div>
+            <div class="col-md-2">¥18</div>
+            <div class="col-md-3"><img src="../images/portal/02COMIXC5902A5122blue/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)皮面日程本子 计划记事本效率手册米色FB60322</a></div>
+            <div class="col-md-2">¥28</div>
+            <div class="col-md-3"><img src="../images/portal/001GuangBo)FB60322/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">戴尔Dell 燃700R1605银色</a></div>
+            <div class="col-md-2">¥3799</div>
+            <div class="col-md-3"><img src="../images/portal/11DELLran7000R1605Ssilvery/collect.png" class="img-responsive" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="panel-title">价格降序</p>
+        </div>
+        <div id="desc-list" class="panel-body panel-item">
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)10本装40张A5牛皮纸记事本子日记本办公软抄本GBR0731</a></div>
+            <div class="col-md-2">¥23</div>
+            <div class="col-md-3"><img src="../images/portal/00GuangBo1040A5GBR0731/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">齐心（COMIX）C5902 A5优品商务笔记本子记事本日记本122张</a></div>
+            <div class="col-md-2">¥18</div>
+            <div class="col-md-3"><img src="../images/portal/02COMIXC5902A5122blue/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)皮面日程本子 计划记事本效率手册米色FB60322</a></div>
+            <div class="col-md-2">¥28</div>
+            <div class="col-md-3"><img src="../images/portal/001GuangBo)FB60322/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">戴尔Dell 燃700R1605银色</a></div>
+            <div class="col-md-2">¥3799</div>
+            <div class="col-md-3"><img src="../images/portal/11DELLran7000R1605Ssilvery/collect.png" class="img-responsive" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="panel-title">价格升序</p>
+        </div>
+        <div id="asc-list" class="panel-body panel-item">
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)10本装40张A5牛皮纸记事本子日记本办公软抄本GBR0731</a></div>
+            <div class="col-md-2">¥23</div>
+            <div class="col-md-3"><img src="../images/portal/00GuangBo1040A5GBR0731/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">齐心（COMIX）C5902 A5优品商务笔记本子记事本日记本122张</a></div>
+            <div class="col-md-2">¥18</div>
+            <div class="col-md-3"><img src="../images/portal/02COMIXC5902A5122blue/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">广博(GuangBo)皮面日程本子 计划记事本效率手册米色FB60322</a></div>
+            <div class="col-md-2">¥28</div>
+            <div class="col-md-3"><img src="../images/portal/001GuangBo)FB60322/collect.png" class="img-responsive" /></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-7 text-row-2"><a href="product.html">戴尔Dell 燃700R1605银色</a></div>
+            <div class="col-md-2">¥3799</div>
+            <div class="col-md-3"><img src="../images/portal/11DELLran7000R1605Ssilvery/collect.png" class="img-responsive" /></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
-  $(document).ready(function () {
-    showAddressList();
+  $(document).ready(function() {
+    // console.log(sessionStorage.getItem("uid"));
+    showHotList();
+    showMarkList();
+    showDescList();
+    showAscList();
   });
 
-  /**
-   * 展示用户收货地址数据
-   */
-  function showAddressList(){
-    $("#address-list").empty();
+  function showHotList() {
+    $("#hot-list").empty();
     $.ajax({
-      url: "/address",
-      type: "POST",
-      //data: "parent=86",//序列化为一个value键值对，便于整理数据，也就是将前端输入的数据序列化
-      dataType: "json",
-      success: function (json) {
-        console.log(json.data);
-        if (json.state == 200) {
-          let list=json.data;
-          for (let i = 0; i < list.length; i++) {
-            let address = '<tr>'
-                    + '<td><input name="aid" value="#{aid}" type="hidden" /></td>'
-                    + '<td>#{tag}</td>'
-                    + '<td>#{name}</td>'
-                    + '<td>#{province}#{city}#{area}#{address}</td>'
-                    + '<td>#{phone}</td>'
-                    + '<td><span class="fa fa-edit" ><input type="submit" value="修改"/></span></td>\n'
-                    + '<td><a onclick="deleteByAid(#{aid})" class="btn btn-xs add-del btn-info"><span class="fa fa-trash-o"></span> 删除</a></td>'
-                    + '<td><a onclick="setDefault(#{aid})" class="btn btn-xs add-def btn-default">设为默认</a></td>'
-                    + '</tr>';
-
-            // <form id="form-search" action="search.html" class="form-inline pull-right" role="form">
-            // 			<div class="form-group">
-            // 			<input type="text" class="form-control" id="search" name="title" placeholder="请输入商品名称进行搜索">
-            // 			</div>
-            // 			<input id="btn-search" type="submit" class="btn btn-primary" value="搜索" />
-            // 			</form>
-
-
-            address = address.replace(/#{aid}/g, list[i].aid);
-            address = address.replace(/#{tag}/g, list[i].tag);
-            address = address.replace("#{name}", list[i].name);
-            address = address.replace("#{province}", list[i].provinceName);
-            address = address.replace("#{city}", list[i].cityName);
-            address = address.replace("#{area}", list[i].areaName);
-            address = address.replace("#{address}", list[i].address);
-            address = address.replace("#{phone}", list[i].phone);
-
-            $("#address-list").append(address);
-          }
-          $(".add-def:eq(0)").hide();//设为默认按钮隐藏
-        } else {
-          alert("用户收货地址数据加载失败！");
-        }
-      }
-    });
-  }
-
-  function deleteByAid(aid) {
-    $.ajax({
-      url:"/address/"+aid+"/delete",
-      type:"POST",
-      dataType:"json",
-      success:function (json) {
-        if(json.state==200){
-          //重新加载收货地址列表页面
-          showAddressList();
-        }else {
-          alert("删除收货地址失败！" + json.message);
-        }
-      },
-      error:function (xhr) {
-        alert("删除收货地址时产生未知异常"+xhr.message());
-      }
-    });
-  }
-
-  function setDefault(aid) {
-    $.ajax({
-      url: "/address/" + aid + "/set_default",
-      type: "POST",
+      url: "/product/hot_list",
+      type: "GET",
       dataType: "JSON",
       success: function(json) {
-        if (json.state == 200) {
-          //重新加载收货地址列表页面
-          showAddressList();
-        } else {
-          alert("设置默认收货地址失败！" + json.message);
+        let list = json.data;
+        console.log("count=" + list.length);
+        for (let i = 0; i < list.length; i++) {
+          console.log(list[i].title);
+          let html = '<div class="col-md-12">'
+                  + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
+                  + '<div class="col-md-2">¥#{price}</div>'
+                  + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                  + '</div>';
+
+          html = html.replace(/#{id}/g, list[i].id);
+          html = html.replace(/#{title}/g, list[i].title);
+          html = html.replace(/#{price}/g, list[i].price);
+          html = html.replace(/#{image}/g, list[i].image);
+
+          $("#hot-list").append(html);
         }
-      },
-      error: function(xhr) {
-        alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-        location.href = "login.html";
       }
     });
   }
+
+  function showMarkList() {
+    $("#mark-list").empty();
+    $.ajax({
+      url: "/product/mark_list",
+      type: "GET",
+      dataType: "JSON",
+      success: function(json) {
+        let list = json.data;
+        console.log("count=" + list.length);
+        for (let i = 0; i < list.length; i++) {
+          console.log(list[i].title);
+          let html = '<div class="col-md-12">'
+                  + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
+                  + '<div class="col-md-2">¥#{price}</div>'
+                  + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                  + '</div>';
+
+          html = html.replace(/#{id}/g, list[i].id);
+          html = html.replace(/#{title}/g, list[i].title);
+          html = html.replace(/#{price}/g, list[i].price);
+          html = html.replace(/#{image}/g, list[i].image);
+
+          $("#mark-list").append(html);
+        }
+      }
+    });
+  }
+
+  function showDescList() {
+    $("#desc-list").empty();
+    $.ajax({
+      url: "/product/desc_list",
+      type: "GET",
+      dataType: "JSON",
+      success: function(json) {
+        let list = json.data;
+        console.log("count=" + list.length);
+        for (let i = 0; i < list.length; i++) {
+          console.log(list[i].title);
+          let html = '<div class="col-md-12">'
+                  + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
+                  + '<div class="col-md-2">¥#{price}</div>'
+                  + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                  + '</div>';
+
+          html = html.replace(/#{id}/g, list[i].id);
+          html = html.replace(/#{title}/g, list[i].title);
+          html = html.replace(/#{price}/g, list[i].price);
+          html = html.replace(/#{image}/g, list[i].image);
+
+          $("#desc-list").append(html);
+        }
+      }
+    });
+  }
+
+  function showAscList() {
+    $("#asc-list").empty();
+    $.ajax({
+      url: "/product/asc_list",
+      type: "GET",
+      dataType: "JSON",
+      success: function(json) {
+        let list = json.data;
+        console.log("count=" + list.length);
+        for (let i = 0; i < list.length; i++) {
+          console.log(list[i].title);
+          let html = '<div class="col-md-12">'
+                  + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
+                  + '<div class="col-md-2">¥#{price}</div>'
+                  + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                  + '</div>';
+
+          html = html.replace(/#{id}/g, list[i].id);
+          html = html.replace(/#{title}/g, list[i].title);
+          html = html.replace(/#{price}/g, list[i].price);
+          html = html.replace(/#{image}/g, list[i].image);
+
+          $("#asc-list").append(html);
+        }
+      }
+    });
+  }
+
   $("#btn-search").click(function () {
     $.ajax({
       url:"/product/title",
@@ -299,6 +400,9 @@
       }
     })
   })
+
 </script>
+
 </body>
+
 </html>
