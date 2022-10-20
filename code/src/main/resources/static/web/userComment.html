@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<!--edge浏览器H5兼容设置-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--360浏览器H5兼容设置-->
+	<meta name="renderer" content="webkit" />
+	<title>电脑商城</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--导入核心文件-->
+	<script src="../bootstrap3/js/holder.js"></script>
+	<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<script src="../bootstrap3/jquery-1.8.3.min.js"></script>
+	<script src="../bootstrap3/js/bootstrap.js"></script>
+	<script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 字体图标 -->
+	<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="../css/webindex.css" />
+	<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+	<link rel="stylesheet" type="text/css" href="../css/top.css" />
+</head>
+<body>
+<div class="container">
+	<div class="col-md-offset-1 col-md-10">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<p class="panel-title">用户历史评价</p>
+			</div>
+			<div class="panel-body">
+				<form action="orderConfirm.html" role="form">
+					<!--购物车表格开始-->
+					<table class="cart-table" width="100%">
+						<thead>
+						<tr>
+							<th width="5%">用户id</th>
+							<th width="5%">商家id</th>
+							<th width="5%">订单id</th>
+							<th width="10%">商品id</th>
+							<th width="20%">商品评价</th>
+							<th width="20%">商家评价</th>
+							<th width="20%">评价分数</th>
+							<th width="20%">商家回复</th>
+						</tr>
+						</thead>
+						<tbody id="user-list" class="cart-body">
+						<tr>
+							<td>50</td>
+							<td>50</td>
+							<td>50</td>
+							<td>10000005</td>
+							<td>不错不错不错不错不错不错</td>
+							<td>不错不错不错不错不错不错</td>
+							<td>10</td>
+							<td>谢谢谢谢谢谢谢谢</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="total-bar">
+					</div>
+					<label class="col-md-2 control-label"><a href="index_user.html">返回</a>&nbsp;&nbsp;&nbsp;</label>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		showUserList();
+	});
+	console.log(localStorage.getItem("uid"));
+	function showUserList() {
+		$("#user-list").empty();
+		let u=localStorage.getItem("uid");
+		$.ajax({
+			url: "/comment/find_comment",
+			type: "GET",
+			data:"uid="+u,
+			dataType: "JSON",
+			success: function(json) {
+				let list = json.data;
+				console.log("count=" + list.length);
+				console.log(json.data);
+			// <td>50</td>
+			// 	<td>50</td>
+			// 	<td>50</td>
+			// 	<td>10000005</td>
+			// 	<td>不错不错不错不错不错不错</td>
+			// 	<td>不错不错不错不错不错不错</td>
+			// 	<td>10</td>
+			// 	<td>谢谢谢谢谢谢谢谢</td>
+				for (let i = 0; i < list.length; i++) {
+					let tr = '<tr>' +
+							'<td>#{uid}</td>' +
+							'<td>#{bid}</td>' +
+							'<td>#{oid}</td>' +
+							'<td>#{pid}</td>'+
+							'<td>#{pComment}</td>'+
+							'<td>#{bComment}</td>'+
+							'<td>#{judgeMark}</td>'+
+							'<td>#{reply}</td>'+
+							'</tr>'
+					tr = tr.replace(/#{uid}/g, list[i].uid);
+					tr = tr.replace(/#{bid}/g, list[i].bid);
+					tr = tr.replace(/#{oid}/g, list[i].oid);
+					tr = tr.replace(/#{pid}/g, list[i].pid);
+					tr = tr.replace(/#{pComment}/g, list[i].pcomment);
+					tr = tr.replace(/#{bComment}/g, list[i].bcomment);
+					tr = tr.replace(/#{judgeMark}/g, list[i].judgeMark);
+					tr = tr.replace(/#{reply}/g, list[i].reply);
+					$("#user-list").append(tr);
+				}
+			}
+		});
+	}
+
+
+
+</script>
+</body>
+</html>
