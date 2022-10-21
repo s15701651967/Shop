@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--edge浏览器H5兼容设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--360浏览器H5兼容设置-->
+    <meta name="renderer" content="webkit"/>
+    <title>电脑商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--导入核心文件-->
+    <script src="../bootstrap3/js/holder.js"></script>
+    <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="../bootstrap3/jquery-1.8.3.min.js"></script>
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 字体图标 -->
+    <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webindex.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/top.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <p class="panel-title">审核商品信息</p>
+            </div>
+            <div class="panel-body">
+                <form action="orderConfirm.html" role="form">
+                    <!--购物车表格开始-->
+                    <table class="cart-table" width="100%">
+                        <thead>
+                        <tr>
+                            <th width="12%">商品pid</th>
+                            <th width="8%">商家uid</th>
+                            <th width="35%">商品名</th>
+                            <th width="35%">商品状态（0:待审核 1：上架 2：下架 3：删除）</th>
+                            <th width="25%">操作</th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="product-list" class="cart-body">
+                        <tr>
+                            <td>pid</td>
+                            <td>uid</td>
+                            <td>title</td>
+                            <td>status</td>
+                            <td>
+                                <input id="btn-pass-product" type="button" class="cart-del btn btn-default btn-xs"
+                                       value="通过"/>
+                                <input id="btn-delete-product" type="button" class="cart-del btn btn-default btn-xs"
+                                       value="驳回"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="total-bar">
+                    </div>
+                    <label class="col-md-2 control-label"><a href="index_admin.html">返回</a>&nbsp;&nbsp;&nbsp;</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        showProductList();
+    });
+
+    function showProductList() {
+        $("#product-list").empty();
+        $.ajax({
+            url: "/product/all",
+            type: "GET",
+            dataType: "JSON",
+            success: function (json) {
+                let list = json.data;
+
+                console.log("count=" + list.length);
+                console.log(json.data);
+                let allCount = 0;
+                for (let i = 0; i < list.length; i++) {
+                    let tr = '<tr>' +
+                        '<td>#{pid}</td>' +
+                        '<td>#{uid}</td>' +
+                        '<td>#{title}</td>' +
+                        '<td>#{status}</td>' +
+                        '<td>' +
+                        '<input id="pass-product" onclick="passProject(#{pid})" type="button"  class="cart-del btn btn-default btn-xs" value="通过" />\n' +
+                        '<input id="delete-product" onclick="rejectProject(#{pid})" type="button"  class="cart-del btn btn-default btn-xs" value="驳回" />\n' +
+                        '</td>' +
+                        '</tr>'
+                    tr = tr.replace(/#{pid}/g, list[i].id);
+                    tr = tr.replace(/#{uid}/g, list[i].businessId);
+
+                    tr = tr.replace(/#{title}/g, list[i].title);
+                    // tr = tr.replace(/#{status}/g, list[i].status);
+
+                    if (list[i].status == 0) {
+                        tr = tr.replace(/#{status}/g, "待审核");
+                    } else if (list[i].status == 1) {
+                        tr = tr.replace(/#{status}/g, "上架");
+                    } else if (list[i].status == 2) {
+                        tr = tr.replace(/#{status}/g, "下架");
+                    } else if (list[i].status == 3) {
+                        tr = tr.replace(/#{status}/g, "删除");
+                    }
+
+
+                    $("#product-list").append(tr);
+                    allCount += list[i].num;
+                }
+            }
+        });
+    }
+
+    function passProject(id) {
+        console.log("通过");
+        $.ajax({
+            url: "/product/" + id + "/pass_product",
+            type: "POST",
+            dataType: "JSON",
+            success: function (json) {
+                /*alert(json.state)*/
+                if (json.state == 200) {
+                    alert("审核通过");
+                    showProductList();
+                } else {
+                    alert("审核异常")
+                }
+            },
+            error: function (xhr) {
+                alert("审核产生未知的异常" + xhr.message);//自动产生错误描述信息
+            }
+        })
+    }
+
+    function rejectProject(id) {
+        console.log("驳回");
+        $.ajax({
+            url: "/product/" + id + "/reject_product",
+            type: "POST",
+            dataType: "JSON",
+            success: function (json) {
+                /*alert(json.state)*/
+                if (json.state == 200) {
+                    alert("审核驳回");
+                    showProductList();
+                } else {
+                    alert("审核异常")
+                }
+            },
+            error: function (xhr) {
+                alert("审核产生未知的异常" + xhr.message);//自动产生错误描述信息
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

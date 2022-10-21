@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--进行持久层接口mapper层中的UserMapper中的两个抽象方法的映射配置-->
+<!-- 项目中第一次使用SQL映射，所以需要在application.properties中添加mybatis.mapper.locations属性的配置，以指定XML文件的位置-->
+
+        <!-- namespace属性：用于制定当前的映射文件和哪个接口进行映射，要指定接口的文件路径，要标注包的完整路径接口-->
+<mapper namespace="com.bistu.store.mapper.OrderMapper">
+    <!--自定义映射规则：resultMap标签来完成映射规则的定义-->
+    <!--
+    id属性：标签给该映射规则分配一个唯一的id值，对应的为resultMap="id属性的值"属性的取值
+    type属性：取值为一个类，表示数据库中的查询结果与java中的哪个实体类进行结果集的映射
+    -->
+    <resultMap id="OrderVOEntityMap" type="com.bistu.store.vo.OrderVO">
+        <id column="oid" property="oid"/>
+        <result column="business_id" property="businessId"/>
+        <result column="recv_name" property="recvName"/>
+        <result column="order_time" property="orderTime"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="p_status" property="pStatus"/>
+        <result column="created_user" property="createdUser"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+    </resultMap>
+
+    <resultMap id="OrderEntityMap" type="com.bistu.store.entity.Order">
+        <id column="oid" property="oid"/>
+        <result column="recv_name" property="recvName"/>
+                <result column="recv_phone" property="recvPhone"/>
+                <result column="recv_province" property="recvProvince"/>
+                <result column="recv_city" property="recvCity"/>
+                <result column="recv_area" property="recvArea"/>
+                <result column="recv_address" property="recvAddress"/>
+                <result column="total_price" property="totalPrice"/>
+        <result column="order_time" property="orderTime"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="status" property="status"/>
+        <result column="created_user" property="createdUser"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+    </resultMap>
+
+    <resultMap id="PayVOEntityMap" type="com.bistu.store.vo.PayVO">
+        <id column="oid" property="oid"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="p_status" property="pStatus"/>
+        <result column="business_id" property="businessId"/>
+    </resultMap>
+    <!--  插入订单数据：Integer insertOrder(Order order)  -->
+    <insert id="insertOrder" useGeneratedKeys="true" keyProperty="oid">
+        INSERT INTO t_order ( uid, recv_name, recv_phone, recv_province,
+        recv_city, recv_area, recv_address, total_price,status, order_time,
+        pay_time, created_user, created_time, modified_user, modified_time )
+        VALUES ( #{uid}, #{recvName}, #{recvPhone}, #{recvProvince}, #{recvCity},
+        #{recvArea}, #{recvAddress}, #{totalPrice}, #{status}, #{orderTime}, #{payTime},
+         #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime} )
+    </insert>
+
+
+    <!--  插入订单商品数据：Integer insertOrderItem(OrderItem orderItem)  -->
+    <insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_order_item ( oid, pid, title, image, price, num,
+        created_user, created_time, modified_user, modified_time )
+        VALUES ( #{oid}, #{pid}, #{title}, #{image}, #{price}, #{num},
+        #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime} )
+    </insert>
+
+    <update id="updateStatus">
+        UPDATE t_order SET
+            status=1,
+            pay_time= #{payTime}
+        where oid=#{oid}
+    </update>
+
+
+    <!--  查询某用户的购物车数据：List<OrderVO> findVOByOid(Integer oid); -->
+    <!-- foreach相当于一个for循环   -->
+    <select id="findVOByOid"  resultMap="OrderVOEntityMap">
+        SELECT  uid,t_order.oid, pid,t_order.order_time,t_order.recv_name,t_order.status,
+        t_order_item.image,t_order_item.title,t_order_item.price, t_order_item.num
+        FROM t_order
+        LEFT JOIN t_order_item ON t_order.oid = t_order_item.oid
+        WHERE t_order.oid=#{oid}
+        ORDER BY
+        t_order_item.id DESC
+    </select>
+
+    <select id="findOrderByOid"  resultMap="OrderEntityMap">
+        SELECT  uid,oid,status,pay_time
+        FROM t_order
+        WHERE oid=#{oid}
+    </select>
+
+    <!--  查询某用户的购物车数据：List<OrderVO> findVOByOid(Integer oid); -->
+    <!-- foreach相当于一个for循环   -->
+    <select id="findVOByUid"  resultMap="OrderVOEntityMap">
+        SELECT  uid,t_order.oid, pid,t_order.order_time,t_order.recv_name,t_order.status,t_order_item.p_status,
+        t_order_item.image,t_order_item.title,t_order_item.price, t_order_item.num
+        FROM t_order
+        LEFT JOIN t_order_item ON t_order.oid = t_order_item.oid
+        WHERE t_order.uid=#{uid}
+        ORDER BY
+        t_order_item.id DESC
+    </select>
+
+    <select id="findBVOByUid"  resultMap="OrderVOEntityMap">
+        SELECT  uid,t_order.oid, t_order_item.pid,t_product.business_id,
+        t_order.order_time,t_order.pay_time,t_order.recv_name,t_order.status,
+        t_order_item.p_status,t_order_item.image,t_order_item.title,t_order_item.price, t_order_item.num
+        FROM t_order
+        LEFT JOIN t_order_item ON t_order.oid = t_order_item.oid
+        LEFT JOIN t_product ON t_product.id=t_order_item.pid
+        WHERE t_order.uid=#{uid}
+        ORDER BY
+        t_order_item.id DESC
+    </select>
+
+    <update id="receiveStatus">
+        UPDATE t_order_item
+        LEFT JOIN t_order ON t_order.oid = t_order_item.oid
+		LEFT JOIN t_product ON t_product.id=t_order_item.pid
+        SET
+            p_status=#{pStatus}
+        where t_order.oid=#{oid} AND t_order_item.pid=#{pid} AND t_order.status=1
+    </update>
+
+    <!--  查询某用户的购物车数据：List<OrderVO> findVOByOid(Integer oid); -->
+    <!-- foreach相当于一个for循环   -->
+    <select id="findVOByOUid"  resultMap="OrderVOEntityMap">
+        SELECT  uid,t_order.oid, pid,t_order.order_time,t_order.recv_name,t_order.status,t_order_item.p_status,
+        t_order_item.image,t_order_item.title,t_order_item.price, t_order_item.num
+        FROM t_order
+        LEFT JOIN t_order_item ON t_order.oid = t_order_item.oid
+        WHERE t_order.uid=#{uid} AND t_order.oid=#{oid}
+        ORDER BY
+        t_order_item.id DESC
+    </select>
+
+    <select id="findVOByOUPid"  resultMap="OrderVOEntityMap">
+        SELECT  uid,t_order.oid, pid,t_order.order_time,t_order.recv_name,t_order.status,
+        t_order_item.image,t_order_item.title,t_order_item.price, t_order_item.num,t_order_item.p_status
+        FROM t_order
+        LEFT JOIN t_order_item ON t_order.oid = t_order_item.oid
+        WHERE t_order.oid=#{oid} AND t_order_item.pid=#{pid}
+        ORDER BY
+        t_order_item.id DESC
+    </select>
+
+    <select id="findOrderByBid"  resultMap="OrderVOEntityMap">
+        SELECT  uid,t_order.oid, pid,t_order.order_time,t_order.recv_name,t_order.status,
+        t_order_item.image,t_order_item.title,t_order_item.price, t_order_item.num,t_order_item.p_status
+        FROM t_order
+        LEFT JOIN t_order_item ON t_order.oid = t_order_item.oid
+        WHERE t_order.oid=#{oid} AND t_order_item.pid=#{pid}
+        ORDER BY
+        t_order_item.id DESC
+    </select>
+
+
+    <select id="paySearch"  resultMap="PayVOEntityMap">
+        SELECT  t_order.uid,t_order.oid, t_order_item.pid,t_order.pay_time,t_order.status,
+        t_order_item.p_status,t_product.business_id
+        FROM t_order
+        LEFT JOIN t_order_item ON t_order.oid = t_order_item.oid
+				LEFT JOIN t_product ON t_product.id=t_order_item.pid
+        WHERE t_order_item.pid=#{pid}
+        ORDER BY
+        t_order.oid ASC
+    </select>
+
+    <select id="businessOrder" resultMap="PayVOEntityMap">
+        SELECT   t_order.uid,t_order.pay_time,t_order.status,
+        t_order_item.oid,t_product.business_id,t_order_item.pid,
+        t_product.title,t_order_item.num, t_order_item.p_status,t_product.priority,t_product.price
+        FROM t_order_item
+        LEFT JOIN t_order ON t_order.oid = t_order_item.oid
+				LEFT JOIN t_product ON t_product.id=t_order_item.pid
+				WHERE t_product.business_id=#{businessId}
+      ORDER BY t_order_item.pid ASC
+    </select>
+
+    <update id="updatePStatus">
+        UPDATE t_order_item
+        LEFT JOIN t_order ON t_order.oid = t_order_item.oid
+		LEFT JOIN t_product ON t_product.id=t_order_item.pid
+        SET
+            p_status=#{pStatus}
+        where t_order.oid=#{oid} AND t_order_item.pid=#{pid} AND t_order.status=1
+    </update>
+
+    <update id="updatePriority">
+        UPDATE t_product
+		LEFT JOIN t_order_item ON t_product.id=t_order_item.pid
+        SET
+            priority=priority+#{num}
+        where t_order_item.oid=#{oid} AND t_order_item.pid=#{pid} AND t_order_item.p_status=3
+    </update>
+
+    <update id="updateSubPriority">
+        UPDATE t_product
+		LEFT JOIN t_order_item ON t_product.id=t_order_item.pid
+        SET
+            priority=priority-#{num}
+        where t_order_item.oid=#{oid} AND t_order_item.pid=#{pid} AND t_order_item.p_status=3
+    </update>
+
+</mapper>

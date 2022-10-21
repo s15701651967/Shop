@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--edge浏览器H5兼容设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--360浏览器H5兼容设置-->
+    <meta name="renderer" content="webkit"/>
+    <title>电脑商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--导入核心文件-->
+    <script src="../bootstrap3/js/holder.js"></script>
+    <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="../bootstrap3/jquery-1.8.3.min.js"></script>
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 字体图标 -->
+    <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webindex.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/top.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <p class="panel-title">卖家等级调整</p>
+            </div>
+            <div class="panel-body">
+                <form action="orderConfirm.html" role="form">
+                    <!--购物车表格开始-->
+                    <table class="cart-table" width="100%">
+                        <thead>
+                        <tr>
+                            <th width="15%">用户id</th>
+                            <th width="15%">用户名</th>
+                            <th width="20%">用户类型</th>
+                            <th width="15%">店铺全部销量</th>
+                            <th width="15%">等级</th>
+                            <th width="30%">操作(级数越低税费越高)</th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="user-list" class="cart-body">
+                        <tr>
+                            <td>id</td>
+                            <td>username</td>
+                            <td>userType</td>
+                            <td>priority</td>
+                            <td>level</td>
+
+                            <td>
+                                <input id="btn-add-user" type="button" class="cart-del btn btn-default btn-xs"
+                                       value="升级"/>
+                                <input id="btn-sub-user" type="button" class="cart-del btn btn-default btn-xs"
+                                       value="降级"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="total-bar">
+                    </div>
+                    <label class="col-md-2 control-label"><a href="index_admin.html">返回</a>&nbsp;&nbsp;&nbsp;</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        showUserList();
+    });
+
+    function showUserList() {
+        $("#user-list").empty();
+        $.ajax({
+            url: "/user/get_level",
+            type: "GET",
+            dataType: "JSON",
+            success: function (json) {
+                let list = json.data;
+
+                console.log("count=" + list.length);
+                console.log(json.data);
+                let allCount = 0;
+                for (let i = 0; i < list.length; i++) {
+                    let tr = '<tr>' +
+                        '<td>#{uid}</td>' +
+                        '<td>#{username}</td>' +
+                        '<td>#{userType}</td>' +
+                        '<td>#{priority}</td>' +
+                        '<td>#{level}</td>' +
+                        '<td>' +
+                        '<input id="pass-user" onclick="passUser(#{uid})" type="button"  class="cart-del btn btn-default btn-xs" value="升级" />\n' +
+                        '<input id="delete-user" onclick="rejectUser(#{uid})" type="button"  class="cart-del btn btn-default btn-xs" value="降级" />\n' +
+                        '</td>' +
+                        '</tr>'
+                    tr = tr.replace(/#{uid}/g, list[i].uid);
+                    tr = tr.replace(/#{username}/g, list[i].username);
+
+                    getPriorities(list[i].uid);
+
+                    tr = tr.replace(/#{priority}/g, localStorage.getItem("prioprity", json.data.priorities));
+
+                    if (list[i].userType == 0) {
+                        tr = tr.replace(/#{userType}/g, "用户");
+                    } else if (list[i].userType == 1) {
+                        tr = tr.replace(/#{userType}/g, "管理员");
+                    } else if (list[i].userType == 2) {
+                        tr = tr.replace(/#{userType}/g, "商家");
+                    }
+
+                    tr = tr.replace(/#{level}/g, list[i].level);
+
+                    $("#user-list").append(tr);
+                }
+            }
+        });
+    }
+
+    function getPriorities(uid) {
+        $.ajax({
+            async: false,
+            url: "/user/get_bLevel",
+            type: "POST",
+            data: "businessId=" + uid,
+            dataType: "JSON",
+            success: function (json) {
+                localStorage.removeItem("prioprity")
+                localStorage.setItem("prioprity", json.data.priorities);
+            },
+            error: function (xhr) {
+                alert("产生未知的异常" + xhr.message);//自动产生错误描述信息
+            }
+        });
+    }
+
+    function passUser(uid) {
+        console.log("增加等级");
+        $.ajax({
+            url: "/user/" + uid + "/addLevel",
+            type: "POST",
+            dataType: "JSON",
+            success: function (json) {
+                /*alert(json.state)*/
+                if (json.state == 200) {
+                    alert("增加等级");
+                    showUserList();
+                } else {
+                    alert("增加等级异常")
+                }
+            },
+            error: function (xhr) {
+                alert("产生未知的异常" + xhr.message);//自动产生错误描述信息
+            }
+        })
+    }
+
+    function rejectUser(uid) {
+        console.log("减少等级");
+        $.ajax({
+            url: "/user/" + uid + "/subLevel",
+            type: "POST",
+            dataType: "JSON",
+            success: function (json) {
+                /*alert(json.state)*/
+                if (json.state == 200) {
+                    alert("减少等级");
+                    showUserList();
+                } else {
+                    alert("减少等级异常")
+                }
+            },
+            error: function (xhr) {
+                alert("产生未知的异常" + xhr.message);//自动产生错误描述信息
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

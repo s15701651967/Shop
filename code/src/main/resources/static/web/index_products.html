@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--edge浏览器H5兼容设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--360浏览器H5兼容设置-->
+    <meta name="renderer" content="webkit"/>
+    <title>电脑商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--导入核心文件-->
+    <script src="../bootstrap3/js/holder.js"></script>
+    <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="../bootstrap3/jquery-1.8.3.min.js"></script>
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 字体图标 -->
+    <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webindex.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/top.css"/>
+</head>
+
+<body>
+<!--头部-->
+<header class="header">
+    <!--电脑商城logo-->
+    <div class="row">
+        <div class="col-md-3">
+            <a href="index_admin.html">
+                <img src="../images/index/stumalllogo.png"/>
+            </a>
+        </div>
+        <!--快捷选项-->
+        <div class="col-md-9 top-item">
+            <ul class="list-inline pull-right">
+                <li><a href="insertProduct.html">&nbsp;添加商品</a></li>
+                <li class="li-split">|</li>
+                <li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
+                <li class="li-split">|</li>
+                <li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
+                <li class="li-split">|</li>
+                <li>
+                    <!--下列列表按钮 ：管理-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                            <span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span
+                                    class="caret"></span></span>
+                        </button>
+                        <ul class="dropdown-menu top-dropdown-ul" role="menu">
+                            <li><a href="password_admin.html">修改密码</a></li>
+                            <li><a href="userdata_admin.html">个人资料</a></li>
+                            <li><a href="address_admin.html">收货管理 </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="li-split">|</li>
+                <li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!--导航 -->
+<!--分割导航和顶部-->
+<div class="row top-nav">
+    <div class="col-md-6">
+        <ul class="nav nav-pills">
+            <li>
+                <a href="#"></a>
+            </li>
+            <li class="active"><a href="index_admin.html"><span class="fa fa-home"></span></a></li>
+            <li><a href=index_admin.html>商品排行</a></li>
+            <form id="form-search" action="search_admin.html" class="form-inline pull-right" role="form">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search" name="title" placeholder="请输入商品名称进行搜索">
+                </div>
+                <input id="btn-search" type="submit" class="btn btn-primary" value="搜索"/>
+            </form>
+        </ul>
+    </div>
+</div>
+<!--头部结束-->
+<!--导航结束-->
+<div class="container">
+    <!--推荐栏目-->
+    <div class="col-md-6">
+        <div class="panel panel-default kuan">
+            <div class="panel-heading">
+                <p class="panel-title">全部商品</p>
+            </div>
+            <div class="col-md-offset-1 col-md-10">
+                <div id="all-list" class="panel-body panel-item">
+                    <div class="goods-panel">
+                        <img src="../images/portal/14LenovoYOGA710 _gold/collect.png" class="img-responsive"/>
+                        <p>¥3398.00</p>
+                        <p class="text-row-3"><a href="product.html"><small>联想（Lenovo）YOGA710 14英寸触控笔记本（i7-7500U 8G
+                            256GSSD 2G独显 全高清IPS 360°翻转 正版office）金</small></a></p>
+                        <span>
+						<button id="btn-add-to-cart" type="button" class="btn btn-default btn-xs add-cart"><span
+                                class="fa fa-cart-arrow-down"></span> 加入购物车</button>
+						</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        showAllList();
+    });
+
+    function showAllList() {
+        $("#all-list").empty();
+        $.ajax({
+            url: "/product/all_pass_products",
+            type: "GET",
+            dataType: "JSON",
+            success: function (json) {
+                let list = json.data;
+                console.log("count=" + list.length);
+                for (let i = 0; i < list.length; i++) {
+                    console.log(list[i].title);
+
+                    let html = '<div class="goods-panel">'
+                        + '<img src="..#{image}collect.png" class="img-responsive" />'
+                        + '<p>¥#{price}</p>'
+                        + '<p class="text-row-3"><a href="product.html?id=#{id}"><small>#{title}</small></a></p>'
+                        + '<span>'
+                        + '<button id="btn-add-to-cart" type="button" class="btn btn-default btn-xs add-cart"><span class="fa fa-cart-arrow-down"></span> 加入购物车</button>'
+                        + '</span>'
+                        + '</div>';
+
+                    let html1 = '<div class="col-md-12">'
+                        + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
+                        + '<div class="col-md-2">¥#{price}</div>'
+                        + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                        + '</div>';
+
+                    html = html.replace(/#{id}/g, list[i].id);
+                    html = html.replace(/#{title}/g, list[i].title);
+                    html = html.replace(/#{price}/g, list[i].price);
+                    html = html.replace(/#{image}/g, list[i].image);
+
+                    $("#all-list").append(html);
+                }
+            }
+        });
+    }
+
+    $("#btn-search").click(function () {
+        location.href = "search.html";
+        $.ajax({
+            url: "/product/title",
+            type: "POST",
+            //data:$("#form-search").serialize(),
+            dataType: "JSON",
+            success: function (json) {
+                /*alert(json.state)*/
+                if (json.state == 200) {
+
+                    location.href = "search.html";
+
+                } else {
+                    alert("无此商品！")
+                }
+            },
+            error: function (xhr) {
+                alert("搜索商品时产生未知的异常" + xhr.message);//自动产生错误描述信息
+            }
+        })
+    })
+</script>
+
+</body>
+
+</html>
