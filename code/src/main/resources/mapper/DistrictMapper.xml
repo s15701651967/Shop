@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--进行持久层接口mapper层中的UserMapper中的两个抽象方法的映射配置-->
+<!-- 项目中第一次使用SQL映射，所以需要在application.properties中添加mybatis.mapper.locations属性的配置，以指定XML文件的位置-->
+
+        <!-- namespace属性：用于制定当前的映射文件和哪个接口进行映射，要指定接口的文件路径，要标注包的完整路径接口-->
+<mapper namespace="com.bistu.store.mapper.DistrictMapper">
+
+        <!--  获取全国所有省/某省所有市/某市所有区：List<District> findByParent(String parent)  -->
+        <select id="findByParent" resultType="com.bistu.store.entity.District">
+                SELECT * FROM t_dict_district WHERE parent=#{parent} ORDER BY code ASC
+        </select>
+
+        <!--  根据省/市/区的行政代号获取省/市/区的名称：String findNameByCode(String code)  -->
+        <select id="findNameByCode" resultType="java.lang.String">
+                SELECT name FROM t_dict_district WHERE code=#{code}
+        </select>
+
+</mapper>
