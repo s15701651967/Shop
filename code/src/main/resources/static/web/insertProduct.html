@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<!--edge浏览器H5兼容设置-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--360浏览器H5兼容设置-->
+	<meta name="renderer" content="webkit" />
+	<title>电脑商城</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--导入核心文件-->
+	<script src="../bootstrap3/js/holder.js"></script>
+	<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<script src="../bootstrap3/jquery-1.8.3.min.js"></script>
+	<script src="../bootstrap3/js/bootstrap.js"></script>
+	<script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 字体图标 -->
+	<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="../css/webindex.css" />
+	<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+	<link rel="stylesheet" type="text/css" href="../css/top.css" />
+</head>
+	<body>
+		<!--头部-->
+		<!--<header class="header">
+			<img src="../images/index/stumalllogo.png" alt="" />
+			<span class="pull-right"><small>欢迎访问</small><b>电脑商城</b></span>
+		</header>-->
+		<!--主体-->
+		<div class="container mycontent text-left">
+			<!--透明层 -->
+			<div class="regDiv">
+				<p align="center" class="panel-title">发布商品</p>
+				<!--表单开始-->
+				<form id="form-insert" class="form-horizontal" role="form">
+					<!--分类id-->
+					<div class="form-group">
+						<label class="col-md-3 control-label">商品id：</label>
+						<div class="col-md-8">
+							<input name="id" type="text" class="form-control" placeholder="请输入商品id如10000025">
+						</div>
+					</div>
+					<!--分类id-->
+					<!--
+					<div class="form-group">
+						<label class="col-md-3 control-label">分类id：</label>
+						<div class="col-md-8">
+							<input name="categoryId" type="text" class="form-control" placeholder="请输入分类id">
+						</div>
+					</div>
+					-->
+					<!--商品系列-->
+					<!--
+					<div class="form-group">
+						<label class="col-md-3 control-label"> 商品系列：</label>
+						<div class="col-md-8">
+							<input name="itemType" type="text" class="form-control" placeholder="请输入商品系列">
+						</div>
+					</div>
+					-->
+					<!--商品title-->
+					<div class="form-group">
+						<label class="col-md-3 control-label"> 商品名称：</label>
+						<div class="col-md-8">
+							<input name="title" type="text" class="form-control" placeholder="请输入商品名称">
+						</div>
+					</div>
+					<!--卖点-->
+					<div class="form-group">
+						<label class="col-md-3 control-label"> 卖点：</label>
+						<div class="col-md-8">
+							<input name="sellPoint" type="text" class="form-control" placeholder="请输入卖点">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label"> 价格：</label>
+						<div class="col-md-8">
+							<input name="price" type="text" class="form-control" placeholder="请输入价格">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label"> 库存数量：</label>
+						<div class="col-md-8">
+							<input name="num" type="text" class="form-control" placeholder="请输入库存数量">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label"> image：</label>
+						<div class="col-md-8">
+							<input name="image" type="text" class="form-control" placeholder="请输入图片路径，如/images/portal/？？？/">
+						</div>
+					</div>
+
+<!--					<div class="form-group">-->
+<!--						<label class="col-md-3 control-label"> 商品状态：</label>-->
+<!--						<div class="col-md-8">-->
+<!--							<input name="status" type="text" class="form-control" placeholder="请输入商品状态">-->
+<!--						</div>-->
+<!--					</div>-->
+
+					<div class="form-group">
+						<label class="col-md-3 control-label"> 历史销量：</label>
+						<div class="col-md-8">
+							<input name="priority" type="text" class="form-control" placeholder="请输入历史销量">
+						</div>
+					</div>
+
+<!--					<div class="form-group">-->
+<!--						<label class="col-md-3 control-label"> 在售数量/商品库存：</label>-->
+<!--						<div class="col-md-8">-->
+<!--							<input name="now_sell_num" type="text" class="form-control" placeholder="请输入历史销量">-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="form-group">-->
+<!--						<label class="col-md-3 control-label"> 购买人数：</label>-->
+<!--						<div class="col-md-8">-->
+<!--							<input name="sell_persons" type="text" class="form-control" placeholder="请输入购买人数">-->
+<!--						</div>-->
+<!--					</div>-->
+
+					<div class="form-group">
+						<label class="col-md-3 control-label"> 评价分数：</label>
+						<div class="col-md-8">
+							<input name="judgeMark" type="text" class="form-control" placeholder="请输入评价分数">
+						</div>
+					</div>
+
+					<div class="form-group">
+					<label class="col-md-3 control-label"> 交易方式：</label>
+					<div class="col-md-8">
+						<input name="sellMethod" type="text" class="form-control" placeholder="请输入交易方式">
+					</div>
+					</div>
+
+					<!--提交按钮-->
+					<div class="form-group">
+						<label class="col-md-3 control-label"></label>
+						<div class="col-md-8">
+							<input id="btn-insert" class="btn btn-primary" type="button" value="提交" />
+							<span class="pull-right"><a href="index_business.html">返回</a></span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//1.监听注册按钮是否被点击,若被点击可以执行一个方法
+			$("#btn-insert").click(function () {
+				//（较为麻烦动态获取表单中控制的数据
+				/*let username=$("#username").val(),*/
+
+				console.log($("#form-insert").serialize());
+				//2.发送Ajax()的异步请求来完成注册功能
+				$.ajax({
+					url:"/product/insert",
+					type:"POST",
+					data: $("#form-insert").serialize(),//序列化为一个value键值对，便于整理数据，也就是将前端输入的数据序列化
+					dataType: "json",
+					success: function(json) {
+						if (json.state == 200) {
+							alert("发布商品成功！等待管理员审核");
+						 location.href = "index_business.html";
+							}
+						else {
+							alert("发布商品失败！" + json.message);
+						}
+					},
+					error:function (xhr) {
+						alert("注册时产生未知错误"+xhr.status);
+					}
+				})
+			})
+
+		</script>
+	</body>
+
+</html>
